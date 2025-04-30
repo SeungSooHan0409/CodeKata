@@ -1,6 +1,6 @@
 package codekata;
 
-class Solution2 {
+class Multiple {
 
     public int solution(int num1, int num2) {
         if (num1 >= 0 && num1 <= 100 && num2 >= 0 && num2 <= 100) {
@@ -15,7 +15,7 @@ class Solution2 {
 
     public static void main(String[] args) {
 
-        Solution2 sol = new Solution2();
+        Multiple sol = new Multiple();
 
         sol.solution(3,4);
         sol.solution(27,19);
