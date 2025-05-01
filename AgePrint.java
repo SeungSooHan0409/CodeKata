@@ -1,6 +1,6 @@
 package codekata;
 
-public class agePrint {
+public class AgePrint {
 
     public int solution(int age) {
         int printYear;
