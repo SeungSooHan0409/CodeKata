@@ -4,19 +4,22 @@ import org.w3c.dom.ls.LSOutput;
 
 class Solution {
 
-        public int solution(int age) {
-            int printYear;
-            if(age > 0 && age <= 120){
-                printYear = 2022 - (age-1);
-            } else {
-                throw new IllegalArgumentException("올바른 나이값이 아닙니다.");
+        public int solution(int num1, int num2) {
+            int result;
+            if(num1 >=0 && num1 <= 10000 && num2 >=0 && num2 <= 10000) {
+                if(num1 == num2) {
+                    result = 1;
+                } else {
+                    result = -1;
+                }
+            } else{
+                throw new IllegalArgumentException("잘못된 입력값입니다.");
             }
-            return printYear;
+            return result;
         }
 
-        public void showAge(int age) {
-            System.out.println("나이 : " + age);
-            System.out.println("출생연도 : " + solution(age));
+        public void printSolution(int num1, int num2) {
+            System.out.println(solution(num1, num2));
         }
 
 }
