@@ -4,19 +4,24 @@ import org.w3c.dom.ls.LSOutput;
 
 class Solution {
 
-    public int solution(int num1, int num2) {
+    public int solution(int angle) {
         int answer = 0;
-        boolean rangeOfNumber = (-50000 <= num1 && num1 <= 50000 && -50000 <= num2 && num2 <= 50000);
-        if(rangeOfNumber){
-            answer = num1 + num2;
-        } else {
-            throw new IllegalArgumentException("잘못된 입력값입니다.");
+        if(0 < angle && angle < 90){
+            answer = 1;
+        } else if(angle == 90){
+            answer = 2;
+        } else if(90 < angle && angle < 180){
+            answer = 3;
+        } else if (angle == 180){
+            answer = 4;
+        } else{
+            throw new IllegalArgumentException("올바른 값을 입력해주세요.");
         }
         return answer;
     }
 
-        public void printSolution(int num1, int num2) {
-            System.out.println(solution(num1, num2));
+        public void printSolution(int angle) {
+            System.out.println(solution(angle));
         }
 
 }
