@@ -5,23 +5,25 @@ import org.w3c.dom.ls.LSOutput;
 class Solution {
 
 
-        public String solution(int num) {
-            String answer = "";
-            if(num>=0){
-                if(num%2 == 1) {
-                    answer = "Odd";
-                } else if(num%2 == 0) {
-                    answer = "Even";
-                }
-            } else if (num<0){
-                if(num%2 == -1) {
-                    answer = "Odd";
-                } else if(num%2 == 0) {
-                    answer = "Even";
+    public double solution(int[] arr) {
+        double answer = 0;
+        double sum = 0;
+        boolean valueCheck;
+        if(1<=arr.length && arr.length<=100){
+            for(int i = 0; i < arr.length; i++){
+                valueCheck = -10000<=arr[i] && arr[i]<=10000;
+                if(valueCheck==false){
+                    throw new IllegalArgumentException("올바른 값이 아닙니다.");
                 }
             }
-            return answer;
         }
+        for (int element : arr) {
+            sum += element;
+        }
+        answer = sum/arr.length;
+
+        return answer;
+    }
 
 }
 
