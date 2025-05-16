@@ -4,17 +4,14 @@ import org.w3c.dom.ls.LSOutput;
 
 class Solution {
 
-    public double solution(int[] numbers) {
-        double answer = 0;
-        double stackOfNum = 0;
-        for(int i = 0; i < numbers.length; i++){
-            if(0 <= numbers[i] && numbers[i] <= 1000 && 1 <= numbers.length && numbers.length <= 100) {
-                stackOfNum += numbers[i];
-            }
+    public String solution(int num) {
+        String answer = "";
+        if(num%2 == 1) {
+            answer = "Odd";
+        } else if(num%2 == 0) {
+            answer = "Even";
         }
-        answer = stackOfNum/numbers.length;
         return answer;
-
     }
 }
 
