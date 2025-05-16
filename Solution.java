@@ -4,12 +4,22 @@ import org.w3c.dom.ls.LSOutput;
 
 class Solution {
 
-        public int solution(double num1, double num2) {
-            double resultOfCalculation = 0;
-            if(0<num1 && num1<=100 && 0<num2 && num2<=100){
-                resultOfCalculation = (num1/num2)*1000;
+
+        public String solution(int num) {
+            String answer = "";
+            if(num>=0){
+                if(num%2 == 1) {
+                    answer = "Odd";
+                } else if(num%2 == 0) {
+                    answer = "Even";
+                }
+            } else if (num<0){
+                if(num%2 == -1) {
+                    answer = "Odd";
+                } else if(num%2 == 0) {
+                    answer = "Even";
+                }
             }
-            int answer = (int) resultOfCalculation;
             return answer;
         }
 
