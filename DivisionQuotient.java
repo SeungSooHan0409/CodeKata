@@ -13,6 +13,7 @@ public class DivisionQuotient {
         return answer;
     }
 
+
     // solution 출력메서드
     void printSolution() {
         System.out.println(solution(9,4));
