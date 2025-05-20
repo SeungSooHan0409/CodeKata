@@ -4,18 +4,13 @@ import org.w3c.dom.ls.LSOutput;
 
 class Solution {
 
-    public int solution(int n) {
-        int answer = 0;
-        int i = 0;
-        // 나머지가 1이 되면 반복문을 break 함.
-        if(3 <= n && n <= 1000000) {
-            for (i = 1 ; i < n ; i++) {
-                if(n%i == 1) {
-                    break;
-                }
+    public long[] solution(int x, int n) {
+        long[] answer = new long[n];
+        if(-10000000 <= x && x <= 10000000 && 0 < n && n <= 1000) {
+            for (int i = 0 ; i < n ; i++) {
+                answer[i] = (long)(i+1)*x;
             }
         }
-        answer = i;
         return answer;
     }
 
