@@ -1,6 +1,6 @@
 package codekata;
 
-public class Divisor {
+public class SumOfDivisor {
 
     public int solution(int n) {
         int answer = 0;
