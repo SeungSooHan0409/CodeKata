@@ -6,14 +6,16 @@ class Solution {
 
     public int solution(int n) {
         int answer = 0;
-        // 약수 : 나머지가 없어야함.
-        if(0 <= n && n <= 3000) {
-            for (int i=1 ; i <= n ; i++) {
-                if(n%i == 0) {
-                    answer += (n/i);
+        int i = 0;
+        // 나머지가 1이 되면 반복문을 break 함.
+        if(3 <= n && n <= 1000000) {
+            for (i = 1 ; i < n ; i++) {
+                if(n%i == 1) {
+                    break;
                 }
             }
         }
+        answer = i;
         return answer;
     }
 
