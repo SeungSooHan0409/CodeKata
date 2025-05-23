@@ -7,31 +7,44 @@ import java.util.Arrays;
 
 class Solution {
 
-    public int solution(int[] numbers) {
-        int answer = -1;
-        int sum = 0;
-        // 배열의 크기 제한
-        if(0 < numbers.length && numbers.length <= 9) {
+    public int[] solution(int[] arr) {
+        int[] answer = {};
+        int i = 0;
+        int j = 0;   //  가장 작은 값의 index
+        int newIndex = 0;
 
-            // element 의 크기 제한
-            for(int i : numbers) {
-                if(0 > i || i > 10) {
-                    throw new  IllegalArgumentException("원소값을 확인해주세요.");
+        // 배열 크기 제한
+        if(0 < arr.length) {
+
+            // 제일 작은수 찾아내기
+            int min = arr[0];
+            for(i = 0; i < arr.length; i++) {
+                if(arr[i] < min) {
+                    min = arr[i];
+                    j = i;
                 }
             }
 
-            // 배열의 모든 숫자 더하기
-            for(int i = 0; i < numbers.length; i++) {
-                sum += numbers[i];
+            // 길이가 arr 보다 1작은 배열 생성
+            int[] remove = new int[arr.length - 1];
+
+            // 가장 작은값 제외한 새로운 배열생성, 배열이 비었으면 -1 넣기
+            if(remove.length == 0) {
+                remove = new int[1];
+                remove[0] = -1;
+                answer = remove;
+            } else {
+                for (int k = 0; k < arr.length; k++) {
+                    if(k==j) {
+                        continue;
+                    }
+                    remove[newIndex++] = arr[k];
+                }
+                answer = remove;
             }
-
-            // 1~9 의 합에서 sum 을 빼면 없는숫자들의 합
-            answer = 45 - sum;
-
         }
         return answer;
     }
-
 }
 
 
