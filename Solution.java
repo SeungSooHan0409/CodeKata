@@ -7,17 +7,29 @@ import java.util.Arrays;
 
 class Solution {
 
-    public String solution(String phone_number) {
-        String answer = "";
-        // 전화번호 길이 제한
-        if(4 <= phone_number.length() && phone_number.length() <= 20) {
-            // 뒷번호를 제외하고 번호를 가림
-            String secret = "*".repeat(phone_number.length()-4);
-            String appear = phone_number.substring(phone_number.length()-4);
-            answer = secret + appear;
+    public int solution(int[] numbers) {
+        int answer = -1;
+        int sum = 0;
+        // 배열의 크기 제한
+        if(0 < numbers.length && numbers.length <= 9) {
+
+            // element 의 크기 제한
+            for(int i : numbers) {
+                if(0 > i || i > 10) {
+                    throw new  IllegalArgumentException("원소값을 확인해주세요.");
+                }
+            }
+
+            // 배열의 모든 숫자 더하기
+            for(int i = 0; i < numbers.length; i++) {
+                sum += numbers[i];
+            }
+
+            // 1~9 의 합에서 sum 을 빼면 없는숫자들의 합
+            answer = 45 - sum;
+
         }
         return answer;
-
     }
 
 }
