@@ -7,30 +7,31 @@ import java.util.Arrays;
 
 class Solution {
 
-    public long solution(int a, int b) {
-        long answer = 0;
+    public int solution(int num) {
+        int answer = 0;
+        int i = 0;
         // 숫자 범위 지정
-        if(-10000000 <= a && a <= 10000000 && -10000000 <= b && b <= 10000000) {
-            // b 가 a 보다 클 경우
-            if (b > a) {
-                for (int i = 0; b-i >= a; i++) {
-                    answer += b-i;
-                }
+        if(1 <= num && num <= 8000000) {
+            // num 이 1인 경우
+            if (num == 1) {
+                answer = 0;
             }
-            // a 가 b 보다 클 경우
-            else if(a > b) {
-                for (int i = 0; a-i >= b; i++) {
-                    answer += a-i;
-                }
-            }
-            // a = b 인 경우
+            // num 이 1이 아닌 경우, for 문 안에 if 문으로 짝수인 경우, 홀수인 경우를 구분하여 계산
             else {
-                answer = a;
+                for(i = 0; i != 500 && num != 1; i++) {
+                    if(num%2 == 1) {
+                        num += ((num*2) +1 );
+                    } else if (num%2 == 0) {
+                        num /= 2;
+                    }
+                }
+                // 연산된 num 이 1인지 확인
+                if(num == 1) {
+                    answer = i;
+                } else {
+                    answer = -1;
+                }
             }
-        }
-        // 숫자 범위를 벗어난 경우
-        else {
-            throw new IllegalArgumentException("잘못된 입력값입니다.");
         }
 
         return answer;
