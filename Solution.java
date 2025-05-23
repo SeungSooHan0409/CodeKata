@@ -7,33 +7,24 @@ import java.util.Arrays;
 
 class Solution {
 
-    public int solution(int num) {
-        int answer = 0;
+    public String solution(String[] seoul) {
+        String answer = "";
         int i = 0;
-        // 숫자 범위 지정
-        if(1 <= num && num <= 8000000) {
-            // num 이 1인 경우
-            if (num == 1) {
-                answer = 0;
-            }
-            // num 이 1이 아닌 경우, for 문 안에 if 문으로 짝수인 경우, 홀수인 경우를 구분하여 계산
-            else {
-                for(i = 0; i != 500 && num != 1; i++) {
-                    if(num%2 == 1) {
-                        num += ((num*2) +1 );
-                    } else if (num%2 == 0) {
-                        num /= 2;
-                    }
-                }
-                // 연산된 num 이 1인지 확인
-                if(num == 1) {
-                    answer = i;
-                } else {
-                    answer = -1;
+        // 배열의 크기 제한
+        if(1 <= seoul.length && seoul.length <= 1000) {
+            // 원소의 크기 제한
+            for (String s : seoul) {
+                if (0 == s.length() || s.length() > 20) {
+                    throw new IllegalArgumentException ("배열내 원소의 크기를 확인해주세요.");
                 }
             }
+            // for 문으로 index 탐색하기
+            for(i = 0; !seoul[i].equals("Kim"); i++) {
+            }
+        } else {
+            throw new IllegalArgumentException("배열의 크기를 확인해 주세요.");
         }
-
+        answer = ("김서방은 " + String.valueOf(i) + "에 있다") ;
         return answer;
     }
 
