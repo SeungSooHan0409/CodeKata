@@ -7,44 +7,27 @@ import java.util.Arrays;
 
 class Solution {
 
-    public int[] solution(int[] arr) {
-        int[] answer = {};
-        int i = 0;
-        int j = 0;   //  가장 작은 값의 index
-        int newIndex = 0;
+    public String solution(String s) {
+        String answer = "";
+        int index = (s.length()/2);
 
-        // 배열 크기 제한
-        if(0 < arr.length) {
+        // s 의 길이제한
+        if(0 < s.length() && s.length() <= 100) {
 
-            // 제일 작은수 찾아내기
-            int min = arr[0];
-            for(i = 0; i < arr.length; i++) {
-                if(arr[i] < min) {
-                    min = arr[i];
-                    j = i;
-                }
-            }
-
-            // 길이가 arr 보다 1작은 배열 생성
-            int[] remove = new int[arr.length - 1];
-
-            // 가장 작은값 제외한 새로운 배열생성, 배열이 비었으면 -1 넣기
-            if(remove.length == 0) {
-                remove = new int[1];
-                remove[0] = -1;
-                answer = remove;
+            // 길이가 짝수, 홀수일 때를 나눠서 출력
+            if(s.length() % 2 == 1) {
+                answer = s.substring(index, index+1);
             } else {
-                for (int k = 0; k < arr.length; k++) {
-                    if(k==j) {
-                        continue;
-                    }
-                    remove[newIndex++] = arr[k];
-                }
-                answer = remove;
+                answer = s.substring(index-1, index+1);
             }
+
+        } else {
+            throw new IllegalArgumentException("올바른 입력값이 아닙니다.");
         }
+
         return answer;
     }
+
 }
 
 
