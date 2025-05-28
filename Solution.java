@@ -3,23 +3,24 @@ package codekata;
 
 class Solution {
 
-    public String solution(String s) {
+    public String solution(int n) {
         String answer = "";
-        int index = (s.length()/2);
+        StringBuilder sb = new StringBuilder();
 
-        // s 의 길이제한
-        if(0 < s.length() && s.length() <= 100) {
+        // n 길이제한
+        if(0 < n && n <= 10000) {
 
-            // 길이가 짝수, 홀수일 때를 나눠서 출력
-            if(s.length() % 2 == 1) {
-                answer = s.substring(index, index+1);
-            } else {
-                answer = s.substring(index-1, index+1);
+            // 문자열 생성
+            for(int i = 1; i <= n; i++) {
+                if(i%2 == 1) {
+                    sb.append("수");
+                } else {
+                    sb.append("박");
+                }
             }
-
-        } else {
-            throw new IllegalArgumentException("올바른 입력값이 아닙니다.");
         }
+
+        answer = sb.toString();
 
         return answer;
     }
