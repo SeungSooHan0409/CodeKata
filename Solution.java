@@ -3,24 +3,18 @@ package codekata;
 
 class Solution {
 
-    public String solution(int n) {
-        String answer = "";
-        StringBuilder sb = new StringBuilder();
+    public int solution(int[] a, int[] b) {
+        int answer = 0;
 
-        // n 길이제한
-        if(0 < n && n <= 10000) {
+        // 배열 길이 제한
+        if(0 <= a.length && a.length <= 1000) {
 
-            // 문자열 생성
-            for(int i = 1; i <= n; i++) {
-                if(i%2 == 1) {
-                    sb.append("수");
-                } else {
-                    sb.append("박");
-                }
+            // 내적 로직
+            for(int i = 0; i < a.length; i++) {
+                answer += a[i]*b[i];
             }
-        }
 
-        answer = sb.toString();
+        }
 
         return answer;
     }
