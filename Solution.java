@@ -5,25 +5,26 @@ import java.util.Arrays;
 
 class Solution {
 
-    public long solution(int price, int money, int count) {
-        long answer = -1;
+    public boolean solution(String s) {
+        boolean answer = true;
+
         // 제한사항
-        if(1 <= price && price <= 2500 && 1 <= money && money <= 1000000000 && 1 <= count && count <= 2500) {
+        if(1 <= s.length() && s.length() <= 8) {
 
-            long stackedPrice =  0;
-
-            // 계산하기
-            for(int i = 1; i <= count; i++) {
-                stackedPrice += (price*i);
+            // 길이가 4 또는 6 일 경우만 계산
+            if(!(s.length() == 4) && !(s.length() == 6)) {
+                answer = false;
             }
 
-            if(money - stackedPrice < 0) {
-                answer = stackedPrice - money;
-            } else {
-                answer = 0;
+            // 예외발생 여부로 answer 값 설정
+            try {
+                Integer examination = Integer.valueOf(s);
+            } catch(NumberFormatException e) {
+                answer = false;
             }
 
         }
+
         return answer;
     }
 
