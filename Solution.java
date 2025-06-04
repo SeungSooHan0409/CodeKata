@@ -5,24 +5,22 @@ import java.util.Arrays;
 
 class Solution {
 
-    public String solution(String s) {
-        String answer = "";
-        char[] arr = new char[s.length()];
+    public long solution(int price, int money, int count) {
+        long answer = -1;
+        // 제한사항
+        if(1 <= price && price <= 2500 && 1 <= money && money <= 1000000000 && 1 <= count && count <= 2500) {
 
-        // String 길이제한
-        if(1 <= s.length()){
+            long stackedPrice =  0;
 
-            // String 을 char 로 분해
-            for(int i = 0; i < s.length(); i++) {
-                arr[i] = s.charAt(i);
+            // 계산하기
+            for(int i = 1; i <= count; i++) {
+                stackedPrice += (price*i);
             }
 
-            // 배열 오름차순으로 정렬
-            Arrays.sort(arr);
-
-            // char 을 String 으로 만들기
-            for(int i = 1; i <= s.length(); i++) {
-                answer += arr[s.length()-i];
+            if(money - stackedPrice < 0) {
+                answer = stackedPrice - money;
+            } else {
+                answer = 0;
             }
 
         }
