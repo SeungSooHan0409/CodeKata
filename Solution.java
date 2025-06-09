@@ -2,35 +2,34 @@ package codekata;
 
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 class Solution {
 
-    public int[][] solution(int[][] arr1, int[][] arr2) {
-        int[][] answer = new int[arr1.length][];
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
 
-        // 제한 조건1 - 행의 길이제한
-        if(arr1.length <= 500) {
-
-            // 제한 조건2 - 열의 길이제한
-            for(int i=0; i < arr1.length; i++) {
-                if(arr1[i].length > 500) {
-                    throw new IllegalArgumentException("행렬의 열의 길이초과!");
-                }
-
-            }
-
-            // 중첩 for 문으로 덧셈 로직 작성
-            for(int i = 0; i < arr1.length; i++) {
-                answer[i] = new int[arr1[i].length];
-
-                for(int j = 0; j < arr1[i].length; j++) {
-                    answer[i][j] = arr1[i][j] + arr2[i][j];
-                }
-            }
-
+        // n 제한 조건
+        if(1000 < a && a <= 0) {
+            throw new IllegalArgumentException("가로 길이 초과!");
         }
 
-        return answer;
+        // 가로 길이 만큼 * 추가
+        String n = "*".repeat(a);
+
+        int b = sc.nextInt();
+
+        // m 제한 조건
+        if(1000 < b && b <= 0) {
+            throw new IllegalArgumentException("세로 길이 초과!");
+        }
+
+        // 세로 길이만큼 반복
+        for(int i = 1; i <= b; i++) {
+            System.out.println(n);
+        }
+
     }
 
 }
