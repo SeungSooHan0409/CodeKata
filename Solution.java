@@ -6,36 +6,34 @@ import java.util.Scanner;
 
 class Solution {
 
-    public int[] solution(int n, int m) {
-        int[] answer = new int[2];
+    public long solution(int n) {
+        long answer = 0;
+        int i = 0;
+        long ternary = 0;
 
-        // 제한 사항
-        if(1 <= n && n <= 1000000 && 1 <= m && m <= 1000000) {
+        // 제한사항
+        if(1<= n && n <= 100000000) {
 
-            // 최대 공약수 구하기
-            int divisor = 0;
+            // 반복문으로 3진수 구하기
+            while(true) {
+                ternary += (n%3)*(long)Math.pow(10,i);
 
-            for(int i = n; i >= 1; i--) {
+                n/=3;
 
-                // i 가 n 의 약수일 경우 최대공약수 인지 검사
-                if(n%i == 0 && m%i ==0) {
-                    divisor = i;
+                if(n == 0) {
                     break;
                 }
 
+                i++;
+
             }
 
+            // 3진수를 역순으로 10진수로 변환하기
+            for(; i>=0; i--) {
+                answer += (ternary%10)*(long)Math.pow(3,i);
+                ternary/=10;
+            }
 
-            // 최소공배수 구하기
-            int multiple = n*m/divisor;
-
-
-            // 최소공배수, 최대공약수를 입력
-            answer[0] = divisor;
-            answer[1] = multiple;
-
-        } else {
-            throw new IllegalArgumentException("지정된 숫자 범위가 아닙니다.");
         }
 
         return answer;
