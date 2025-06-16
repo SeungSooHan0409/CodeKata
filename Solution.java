@@ -6,35 +6,43 @@ import java.util.Scanner;
 
 class Solution {
 
-    public long solution(int n) {
-        long answer = 0;
-        int i = 0;
-        long ternary = 0;
+    public String solution(String s) {
+        String answer = "";
+        int count = 0;
 
-        // 제한사항
-        if(1<= n && n <= 100000000) {
+        // 문자열을 문자배열로 변환
+        char[] charArr = s.toCharArray();
 
-            // 반복문으로 3진수 구하기
-            while(true) {
-                ternary += (n%3)*(long)Math.pow(10,i);
+        // 단어의 짝수번째 인덱스에는 대문자로 변경
+        for(int i = 0; i < s.length(); i++) {
 
-                n/=3;
+            // 대문자 자리에 소문자 오면 로직전환 (if, else if)
+            if(i%2 == 0 && count%2 == 0) {
 
-                if(n == 0) {
-                    break;
+                if(charArr[i] == ' ') {
+                    count ++;
+                    continue;
+                } else {
+                    charArr[i] = Character.toUpperCase(charArr[i]);
                 }
 
-                i++;
+            } else if(i%2 == 1 && count%2 == 1) {
 
-            }
+                if(charArr[i] == ' ') {
+                    count++;
+                    continue;
+                } else {
+                    charArr[i] = Character.toUpperCase(charArr[i]);
+                }
 
-            // 3진수를 역순으로 10진수로 변환하기
-            for(; i>=0; i--) {
-                answer += (ternary%10)*(long)Math.pow(3,i);
-                ternary/=10;
+                // 나머지 문자들은 소문자로 처리
+            } else {
+                charArr[i] = Character.toLowerCase(charArr[i]);
             }
 
         }
+
+        answer = String.valueOf(charArr);
 
         return answer;
     }
