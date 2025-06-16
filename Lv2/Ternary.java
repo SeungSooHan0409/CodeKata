@@ -1,10 +1,6 @@
-package codekata;
+package codekata.Lv2;
 
-
-import java.util.Arrays;
-import java.util.Scanner;
-
-class Solution {
+public class Ternary {
 
     public long solution(int n) {
         long answer = 0;
@@ -40,5 +36,3 @@ class Solution {
     }
 
 }
-
-
