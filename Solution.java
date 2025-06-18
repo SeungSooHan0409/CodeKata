@@ -1,46 +1,59 @@
 package codekata;
 
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Scanner;
 
 class Solution {
 
-    public int solution(int[] number) {
+    public int solution(String t, String p) {
         int answer = 0;
-        int al = number.length;
+        BigInteger changeP = new BigInteger(p);
 
-        // 제한사항
-        if(3 <= number.length && number.length <= 13) {
+        // 제한 사항
+        if(1 <= p.length() && p.length() < 18 && p.length() <= t.length() && t.length() <= 10000) {
 
-            // 전체 경우의 수 :  al*(al-1)*(al-2)/3!
-            // 중첩 for 문 으로 경우의 수 계산
-            for(int i = 0; i < al; i++) {
+            // substring, compareTo, 반복문으로 해결
+            for(int i = 0; i + p.length() <= t.length(); i++) {
 
-                for(int j = 0; j < al; j++) {
+                String partOfT = t.substring(i, i+(p.length()));
 
-                    if(j == i) {
-                        continue;
-                    }
+                BigInteger changeT = new BigInteger(partOfT);
 
-                    for(int k = 0; k < al; k++) {
-                        if(k == i || k == j) {
-                            continue;
-                        }
-
-                        if(number[i] + number[j] + number[k] == 0) {
-                            answer++;
-                        }
-                    }
+                if(changeT.compareTo(changeP) <= 0) {
+                    answer += 1;
                 }
+
             }
 
         }
 
-        // 3! 으로 answer 나누기
-        answer = answer / 6;
         return answer;
     }
+
+    // 또다른 답안
+//    public int solution(String t, String p) {
+//        int answer = 0;
+//
+//        // 제한 사항
+//        if(1 <= p.length() && p.length() <= 18 && p.length() <= t.length() && t.length() <= 10000) {
+//
+//            // substring, compareTo, 반복문으로 해결
+//            for(int i = 0; i + p.length() <= t.length(); i++) {
+//
+//                String partOfT = t.substring(i, i+(p.length()));
+//
+//                if(partOfT.compareTo(p) <= 0) {
+//                    answer += 1;
+//                }
+//
+//            }
+//
+//        }
+//
+//        return answer;
+//    }
 
 }
 
