@@ -1,6 +1,6 @@
 package codekata.Lv3;
 
-public class PartOfSmallness {
+public class Rectangle {
 
     public int solution(int[][] sizes) {
         int answer = 0;
