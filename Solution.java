@@ -7,130 +7,62 @@ import java.util.Scanner;
 
 class Solution {
 
-    public int solution(int[][] sizes) {
-        int answer = 0;
-        int element = 0;
-        int biggest = 0;
-        int row = 2;
-        int realHeight = Integer.MAX_VALUE;
-        int realWidth = Integer.MAX_VALUE;
-        int filteredHeight = sizes[0][1];
-        int filteredWidth = sizes[0][0];
+    public String solution(String s, int n) {
+        StringBuilder answer = new StringBuilder();
 
+        // 제한사항
+        if(s.length() <= 8000 && 1 <= n && n <= 25) {
 
-        // 제한사항 적용
-        if(1 <= sizes.length && sizes.length <= 10000) {
+            // 유니코드를 이용하여 로직작성
+            for(int i = 0; i < s.length(); i++) {
 
-            for(int i = 0; i < sizes.length; i++) {
+                char toChar = s.charAt(i);
 
-                int w = sizes[i][0];
-                int h = sizes[i][1];
-
-                if(!(1 <= w && w <= 1000 && 1 <= h && h <=1000)) {
-
-                    throw new IllegalArgumentException("가로 길이 혹은 세로 길이 초과!");
-
+                // 공백이면 반복문 진행
+                if(toChar == ' ') {
+                    answer.append(" ");
+                    continue;
                 }
+
+                // int 로 형변환
+                int toUnicode = (int) toChar;
+                int pushedCode = toUnicode + n;
+
+                // z 에서 밀면 a 로 되돌아가는 조건 설정
+                // A-Z : 65 ~ 90
+                // a-z : 97 ~ 122
+                if(!((65 <= pushedCode && pushedCode <=90) || (97 <= pushedCode && pushedCode <= 122))) {
+
+                    // 대문자 일때
+                    if(91 <= pushedCode && pushedCode <= 115) {
+                        toUnicode = (pushedCode - 90) + 65 - 1;
+                    }
+                    // 소문자 일때
+                    else if(123 <= pushedCode && pushedCode <= 147) {
+                        toUnicode = (pushedCode - 122) + 97 - 1;
+
+                    }
+
+                } else if(97 <= pushedCode && pushedCode <= 115 && Character.isUpperCase(toUnicode)) {
+                    toUnicode = 65 - 1 + n - (90 - toUnicode);
+
+                } else {
+                    toUnicode = pushedCode;
+                }
+
+                // char 로 형변환
+                char pushedChar = (char) toUnicode;
+
+                // answer 에 값 입력
+                answer.append(pushedChar);
+
             }
 
-            // 제일 큰수를 하나 찾기
-            for(int i = 0; i < sizes.length; i++) {
-                for(int j = 0; j <= 1; j++) {
-                    element = sizes[i][j];
-
-                    // 가장 큰 수를 저장 및 열의 위치 저장
-                    if(biggest <= element) {
-                        biggest = element;
-                        row = j;
-                    }
-                }
-            }
-
-            // 디버깅용
-            System.out.println("가장 큰수 : " + biggest);
-            System.out.println("row : " + row);
-
-            // 저장된 열의 위치로 biggest 가 가로일때와 세로일때의 조건을 나눔.
-            // 나눈 조건에서 명함의 최적길이를 알아냄.
-
-
-
-                for(int i = 0; i < sizes.length; i++) {
-                    int height = sizes[i][1];
-
-                    int[] arr1 = {biggest, height};
-                    int[] arr2 = {height, biggest};
-
-                    boolean isBreak = false;
-
-                    for(int j = 0; j < sizes.length; j++) {
-                        int[] arr = {sizes[j][0], sizes[j][1]};
-
-                        if(!((arr[0] <= arr1[0] && arr[1] <= arr1[1]) ||
-                                arr[0] <= arr2[0] && arr[1] <= arr2[1])) {
-
-                            isBreak = true;
-                            break;
-
-                        }
-                    }
-
-                    if(isBreak) {
-                        continue;
-                    } else  {
-                        filteredHeight = height;
-
-                        if(filteredHeight <= realHeight) {
-                            realHeight = filteredHeight;
-                        }
-                    }
-                }
-
-
-                for(int i = 0; i < sizes.length; i++) {
-                    int width = sizes[i][0];
-
-                    int[] arr1 = {width, biggest};
-                    int[] arr2 = {biggest, width};
-
-                    boolean isBreak = false;
-
-                    for(int j = 0; j < sizes.length; j++) {
-                        int[] arr = {sizes[j][0], sizes[j][1]};
-
-                        if(!((arr[0] <= arr1[0] && arr[1] <= arr1[1]) ||
-                                arr[0] <= arr2[0] && arr[1] <= arr2[1])) {
-
-                            isBreak = true;
-                            break;
-
-                        }
-                    }
-
-                    if(isBreak) {
-                        continue;
-                    } else  {
-                        filteredWidth = width;
-
-                        if(filteredWidth <= realWidth) {
-                            realWidth = filteredWidth;
-                        }
-                    }
-                }
-
+        } else {
+            throw new IllegalArgumentException("범위 초과");
         }
 
-        // 디버깅용
-        System.out.println("높이 :" + realHeight);
-        System.out.println("길이 : " + realWidth);
-
-        if(realHeight <= realWidth) {
-            answer = realHeight*biggest;
-        } else if (realWidth < realHeight) {
-            answer = realWidth*biggest;
-        }
-
-        return answer;
+        return answer.toString();
     }
 
 }
